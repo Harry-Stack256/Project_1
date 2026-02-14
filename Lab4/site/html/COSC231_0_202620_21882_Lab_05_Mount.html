@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+<meta charset="UTF-8">
+<!-- Class: COSC 231.0
+Name: Harrison Mount
+EID: E02689234
+Lab: 05
+Date: 2026-02-13 SAT T 23:59:59 Z-05:00
+
+Description: This HTML blueprint for statistics given for a sample set 
+   Below the sample table its a button that takes a string of numbers 
+   seprated by comas and turns them into a a arary of numbers  -->
+
+<title>“Lab 05 : Stats”</title>
+<link rel="stylesheet" href="/site/css/site.css">
+<script>
+     function update_stats(){
+
+          //This method gets the refrence of the input set text box . Then the vaule is parsed int a array
+      input_text= document.getElementById("input_set");
+      let x=   parse_string_into_array_of_ordered_asc_nums(input_text.value);
+         console.log("x.length "+x.length);
+        console.log("----------------------------------");
+        for(let i=0;i<x.length;i++){
+          console.log("x["+i+"]:"+x[i]);
+        }
+
+         console.log("----------------------------------");
+
+        //we get the rerfrence to the 3rd column in the first row and change its inner HTML to the array of ints the user put in
+       row1_col3= document.getElementById("row1-col3");
+       row1_col3.innerHTML= "x= (" + x.join(",") + ")";
+       //We get the refrence to all the data cells besides the first and changes there inner HTML to TBH
+       let table_data_cells = document.getElementsByClassName("tbl_row_data");
+           for(let i=1;i<table_data_cells.length;i++){
+          table_data_cells[i].innerHTML = "TBD";
+           }
+        
+
+     }
+function parse_string_into_array_of_ordered_asc_nums(str){
+     //takes in a string of comma-separated numbers and returns an array of those numbers in ascending order
+     str_cleaned = str.replace(/\s+|\n|\r|\t/g, "");
+     arr_nums = str_cleaned.split(",").map(Number);
+    return arr_nums.sort(function(a, b){return a - b});
+
+
+}
+
+</script>
+</head>
+<body>
+
+    <h1 id="my_header"> Sample Set Statistics:</h1>
+
+    <hr>
+    <div id="my_output">
+      <h2>Statistics for a given sample set:</h2>
+      <table id="my_table">
+
+        <!--Row 1-->
+        <tr>
+            <th class="tbl_row_headers"> Sample Set(Ordered):</th>
+            <th class="tbl_row_eqns">x=(x<sub>1</sub>, ... , x<sub>n</sub>)</th>
+            <td class="tbl_row_data" id="row1-col3">x= (1,2,3,5,7,9)</td>
+        
+        </tr>
+
+        <tr>
+            <th class="tbl_row_headers">Sample Size:</th>
+             <th class="tbl_row_eqns">n=size(x) or x.length</th>
+             <td class="tbl_row_data">n= 5</td>
+
+        </tr>
+
+        <tr>
+            <th class="tbl_row_headers">Sample Minimum:</th>
+            <th class="tbl_row_eqns">x<sub>min</sub>-x<sub>1</sub></th>
+            <td class="tbl_row_data">x<sub>min</sub>= 1</td>
+
+
+        </tr>
+
+        <tr>
+             <th class="tbl_row_headers">Sample Maximum:</th>
+             <th class="tbl_row_eqns">x<sub>max</sub>= x<sub>n</sub></th>
+             <td class="tbl_row_data">x<sub>max</sub>= 9</td>
+
+        </tr>
+
+        <tr>
+             <th class="tbl_row_headers">Sample Sum:</th>
+             <th class="tbl_row_eqns">(i-1:n)&Sigma;x<sub>i</sub></th>
+             <td class="tbl_row_data">&Sigma; = 5</td>
+
+        </tr>
+
+        <tr>
+             <th class="tbl_row_headers">Sample Mean:</th>
+             <th class="tbl_row_eqns">x&#773;= (&Sigma;x<sub>i</sub>) /n</th>
+             <td class="tbl_row_data"> x&#773; = 5</td>
+
+        </tr>
+
+        <tr>
+             <th class="tbl_row_headers">Sample Median:</th>
+             <th class="tbl_row_eqns">1&deg; (n%2==1): x&#773; = x<sub>(n-1)/2</sub><br>
+             2&deg; (n%2==0) x&#773; = (x<sub>n/2</sub>+x<sub>n/2+1</sub>)/2</th>
+             <td class="tbl_row_data">x&#773; = 5</td>
+
+        </tr>
+
+        <tr>
+             <th class="tbl_row_headers">Sample Variance:</th>
+             <th class="tbl_row_eqns">s<sup>2</sup> = (&Sigma;(x<sub>i</sub>-x)<sup>2</sup>)/n-1</th>
+             <td class="tbl_row_data"> s<sup>2</sup> = 10 </td>
+
+        </tr>
+
+        <tr>
+             <th class="tbl_row_headers">Sample Standard Deviation:</th>
+             <th class="tbl_row_eqns"> s= &radic;(s<sup>2</sup>)</th>
+             <td class="tbl_row_data"> s = 3.1622777</td>
+
+        </tr>
+        
+
+
+
+        
+      </table>
+
+    </div>
+    <hr>
+    <div id="my_input">
+     <h2>Input New Sample Set:</h2>
+     <p>Input a comma-separated set of numbers and press the button to calculate a new table.
+     
+     
+     </p>
+     <form id=“input_form”>
+          <label for="input_set">
+          Comma-Separated Values:
+          </label>
+          <br>
+          <input type="text" id="input_set" name="TODO" value="1,3,5,7,9">
+          
+     </form>
+
+     <button onclick="update_stats()" value="Submit">Calculate</button>
+
+    </div>
+    <hr>
+    <footer id="my_footer">
+     <div id="copyright">
+         &copy;2026-Harrison Mount
+          
+
+     </div>
+     <address id="my_contact">
+               <p> Written by <a href="mailto:hmount@emich.edu">Harrison Mount</a></p>
+               <p><a href="tel:7348272680"> +7348272680</a></p>
+               <p> Visit <a href="https://emich.edu">EMU</a>!</p>
+               
+          </address>
+    </footer>
+
+
+</body>
+
+</html>

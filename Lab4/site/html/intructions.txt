@@ -1,0 +1,39 @@
+Start this function with the following:
+str_cleaned = str.replace(/\s+|\n|\r|\t/g, "");
+The code above basically removes any whitespace from the input text that the user typed in the
+text input box before clicking the calculate button.
+Next, add the following code:
+arr_nums = str_cleaned.split(",").map(Number);
+The code above created an array called arr_nums that stores numbers. How did it get the
+numbers? It firsts split the cleaned string (which at that point should only have digits and
+commas in it) and it splits the string on commas (so it throws out the commas and the digit
+sequences – i.e., “numbers” in between are to become the indices of an array). As those
+“numbers” are still just strings of digit characters and not really numbers, the map function then
+converts them into numbers before the collection is stored in the array arr_nums.
+Next, perform an in-place sort on the array with the following code:
+arr_nums.sort(function(a, b){return a - b});
+Finally, the function returns must the sorted array of numbers to the caller.
+JS function Descriptions (continued):
+The function update_stats() does the following…
+First, create a variable called input_text and assign to it the reference to the element in the
+document that has the ID “input_set”; this is done with
+document.getElementById().
+The variable is a reference to the HTML element. You need to use the contents of that element,
+which is accessible via the element’s value, so create a variable called str_to_parse and
+store in it the value of input_text.
+Next, create an array called x and assign to it the return value of the function call to the other
+function -
+parse_string_into_array_of_ordered_asc_nums( str_to_parse ) .
+Next, print the length of the array x to the console log (see screenshots below; make sure you
+include the correct text).
+Next, make a call to the console.log() function to print a bunch of hyphens/dashes to console
+log. Now you need to iterate over x with a for-loop an print to the console the values at each
+index of the array (make sure you tab-indent and display array name and index number too, as
+seen in the screenshots). After the for-loop, make another call to the console.log() function to
+print a bunch of hyphens/dashes to console log.
+Now your function will do two final steps. First, it will change the value in the stats table in row
+one’s column three. To do this, you need to get a reference to that <td> and set the
+innerHTML to represent the new list of numbers that are now sorted in the array x. Please make
+sure you don’t just put the numbers, but instead actually create parenthesis, equal sign, and
+character ‘x’, as seen in screenshots. The second step is to change the remaining column 3 cells
+to display “TBD.”
